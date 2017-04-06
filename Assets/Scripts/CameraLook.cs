@@ -6,6 +6,13 @@ public class CameraLook : MonoBehaviour {
 
 	float upDownLook = 0f;
 	public Collider currentlyHeld;
+	public Collider emptyHold;
+	Vector3 whereAt;
+
+	void Start(){
+		currentlyHeld = emptyHold;
+		whereAt = emptyHold.GetComponent<Transform> ().position;
+	}
 
 	// Update is called once per frame
 	void Update () {
@@ -13,7 +20,7 @@ public class CameraLook : MonoBehaviour {
 		float mouseY = Input.GetAxis ("Mouse Y");
 		//clamp/constrain the X angle so we can't look too far up or down
 		upDownLook -= mouseY;
-		upDownLook = Mathf.Clamp (upDownLook, -80f, 80f); //constrain look 80 degrees
+		upDownLook = Mathf.Clamp (upDownLook, -26.6f, 26.6f); //constrain look 80 degrees
 
 		//unroll the camera
 		transform.eulerAngles = new Vector3( upDownLook * 3f, transform.eulerAngles.y, 0f);
@@ -24,16 +31,29 @@ public class CameraLook : MonoBehaviour {
 		//initialize rayHit
 		RaycastHit rayHit = new RaycastHit();
 
-		//shoot raycast
-		if (Physics.Raycast (ray, out rayHit, 5f)) {
-			//pickup on click
-			if (Input.GetMouseButton (0)) {
-				currentlyHeld = rayHit.collider; //remember what we hit
-				currentlyHeld.transform.parent = Camera.main.transform;
+		if (currentlyHeld.tag != "book") {
+			//shoot raycast
+			if (Physics.Raycast (ray, out rayHit, 5f)) {
+				//pickup on click
+				if (Input.GetMouseButton (0)) {
+					currentlyHeld = rayHit.collider; //remember what we hit
+					if (currentlyHeld.tag == "book") {
+						//keep it in front of you
+						currentlyHeld.transform.parent = Camera.main.transform;
+						currentlyHeld.GetComponent<Rigidbody> ().useGravity = false;
+						whereAt = currentlyHeld.GetComponent<Transform> ().localPosition;
+					}
+				}
 			}
-
+		} else {
+			currentlyHeld.GetComponent<Transform> ().localPosition = whereAt;
+			//drop item
 			if (Input.GetMouseButtonUp (0)) {
-				currentlyHeld.transform.SetParent (null);
+				if (currentlyHeld.tag == "book") {
+					currentlyHeld.transform.SetParent (null);
+					currentlyHeld.GetComponent<Rigidbody> ().useGravity = true;
+					currentlyHeld = emptyHold;
+				}
 			}
 		}
 	}
