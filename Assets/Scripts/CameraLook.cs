@@ -16,7 +16,6 @@ public class CameraLook : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
 		float mouseY = Input.GetAxis ("Mouse Y");
 		//clamp/constrain the X angle so we can't look too far up or down
 		upDownLook -= mouseY;
