@@ -37,14 +37,6 @@ public class CameraLook : MonoBehaviour {
 			//shoot raycast
 			if (Physics.Raycast (ray, out rayHit, 5f)) {
                 //pickup on click
-                if(rayHit.collider.transform.tag == "book")
-                {
-                    objectInfo.GetComponent<Text>().text = rayHit.collider.transform.name;
-                }
-                else
-                {
-                    objectInfo.GetComponent<Text>().text = "";
-                }
                 if (Input.GetMouseButton (0)) {
 					currentlyHeld = rayHit.collider; //remember what we hit
 					if (currentlyHeld.tag == "book")
