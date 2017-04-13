@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraLook : MonoBehaviour {
 
@@ -8,6 +9,7 @@ public class CameraLook : MonoBehaviour {
 	public Collider currentlyHeld;
 	public Collider emptyHold;
 	Vector3 whereAt;
+    public Text objectInfo;
 
 	void Start(){
 		currentlyHeld = emptyHold;
@@ -33,23 +35,33 @@ public class CameraLook : MonoBehaviour {
 		if (currentlyHeld.tag != "book") {
 			//shoot raycast
 			if (Physics.Raycast (ray, out rayHit, 5f)) {
-				//pickup on click
-				if (Input.GetMouseButton (0)) {
+                //pickup on click
+                if(rayHit.collider.transform.tag == "book")
+                {
+                    objectInfo.GetComponent<Text>().text = rayHit.collider.transform.name;
+                }
+                else
+                {
+                    objectInfo.GetComponent<Text>().text = "";
+                }
+                if (Input.GetMouseButton (0)) {
 					currentlyHeld = rayHit.collider; //remember what we hit
-					if (currentlyHeld.tag == "book") {
-						//keep it in front of you
-						currentlyHeld.transform.parent = Camera.main.transform;
+					if (currentlyHeld.tag == "book")
+                    {
+                        //keep it in front of you
+                        currentlyHeld.transform.parent = Camera.main.transform;
 						currentlyHeld.GetComponent<Rigidbody> ().useGravity = false;
 						whereAt = currentlyHeld.GetComponent<Transform> ().localPosition;
 					}
 				}
-			}
+            }
 		} else {
 			currentlyHeld.GetComponent<Transform> ().localPosition = whereAt;
-			//drop item
-			if (Input.GetMouseButtonUp (0)) {
-				if (currentlyHeld.tag == "book") {
-					currentlyHeld.transform.SetParent (null);
+            //drop item
+            if (Input.GetMouseButtonUp (0)) {
+                if (currentlyHeld.tag == "book")
+                {
+                    currentlyHeld.transform.SetParent (null);
 					currentlyHeld.GetComponent<Rigidbody> ().useGravity = true;
 					currentlyHeld = emptyHold;
 				}
