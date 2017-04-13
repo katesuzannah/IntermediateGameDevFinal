@@ -8,6 +8,8 @@ public class CameraLook : MonoBehaviour {
 	public Collider currentlyHeld;
 	public Collider emptyHold;
 	Vector3 whereAt;
+	public GameObject laptop; 
+	public GameObject laptopPopUpCanvas; 
 
 	void Start(){
 		currentlyHeld = emptyHold;
@@ -41,6 +43,11 @@ public class CameraLook : MonoBehaviour {
 						currentlyHeld.transform.parent = Camera.main.transform;
 						currentlyHeld.GetComponent<Rigidbody> ().useGravity = false;
 						whereAt = currentlyHeld.GetComponent<Transform> ().localPosition;
+					} else if (currentlyHeld.tag == "laptop") {
+						//clicks on laptop
+						laptopPopUpCanvas.SetActive (true);
+						Cursor.visible = true;
+						Cursor.lockState = CursorLockMode.None;
 					}
 				}
 			}
@@ -56,4 +63,5 @@ public class CameraLook : MonoBehaviour {
 			}
 		}
 	}
+
 }
