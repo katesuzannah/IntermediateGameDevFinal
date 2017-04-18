@@ -17,6 +17,12 @@ ModelImporter:
     100018: rightUpLeg
     100020: shoulders
     100022: spine
+    100024: polySurface1
+    100026: polySurface10
+    100028: polySurface2
+    100030: transform1
+    100032: transform2
+    100034: transform3
     400000: hips
     400002: //RootNode
     400004: leftFoot
@@ -29,6 +35,12 @@ ModelImporter:
     400018: rightUpLeg
     400020: shoulders
     400022: spine
+    400024: polySurface1
+    400026: polySurface10
+    400028: polySurface2
+    400030: transform1
+    400032: transform2
+    400034: transform3
     4300000: pasted__pCylinder4
     7400000: walk
     7400002: stab
