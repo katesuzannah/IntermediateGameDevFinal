@@ -20,7 +20,7 @@ public class drawerOpen : MonoBehaviour {
 			OpenDrawer ();
 		}
 		//Call OpenDrawer if player clicks on drawer, but right now just do it with Q for debugging purposes
-		if (Input.GetKeyDown(KeyCode.Q)) {
+		if (lamp.flickers == 6) {
 			drawerOpening = true;
 		}
 	}

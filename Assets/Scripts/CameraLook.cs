@@ -41,6 +41,7 @@ public class CameraLook : MonoBehaviour {
                 //pickup on click
                 if (Input.GetMouseButton (0)) {
 					currentlyHeld = rayHit.collider; //remember what we hit
+					Debug.Log(currentlyHeld);
 					if (currentlyHeld.tag == "book")
                     {
                         //keep it in front of you
@@ -52,6 +53,15 @@ public class CameraLook : MonoBehaviour {
 						laptopPopUpCanvas.SetActive (true);
 						Cursor.visible = true;
 						Cursor.lockState = CursorLockMode.None;
+					}
+				}
+				if (Input.GetMouseButtonDown(0)) {
+					currentlyHeld = rayHit.collider; //remember what we hit
+					Debug.Log (currentlyHeld.tag);
+					if (currentlyHeld.tag == "lightswitch") {
+						Debug.Log ("light turn on now plz");
+						//flicks lightswitch
+						currentlyHeld.GetComponent<lamp>().switchOn ();
 					}
 				}
             }
