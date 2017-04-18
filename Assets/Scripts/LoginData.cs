@@ -42,7 +42,7 @@ public class LoginData : MonoBehaviour {
 
 	public void gotoJoshTest(){
 		if ((password != "") && (nameInput.text != "")) {
-			SceneManager.LoadScene ("joshTestScene");
+			SceneManager.LoadScene ("grantLevel");
 		}
 	}
 }
