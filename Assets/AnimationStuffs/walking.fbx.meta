@@ -1,49 +1,36 @@
 fileFormatVersion: 2
-guid: 45405d28f4fe64df9ab0b0b08f56584f
-timeCreated: 1492113919
+guid: e3e713324789f4d9883ec7ea8ed5385d
+timeCreated: 1492543076
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: hips
-    100002: //RootNode
-    100004: leftFoot
-    100006: leftUpLeg
-    100008: pasted__pCylinder4
-    100010: rightElbow
-    100012: rightFoot
-    100014: rightHand
-    100016: rightShoulder
-    100018: rightUpLeg
-    100020: shoulders
-    100022: spine
-    100024: polySurface1
-    100026: polySurface10
-    100028: polySurface2
-    100030: transform1
-    100032: transform2
-    100034: transform3
+    100002: leftFoot
+    100004: leftUpLeg
+    100006: pasted__pCylinder4
+    100008: rightElbow
+    100010: rightFoot
+    100012: rightHand
+    100014: rightShoulder
+    100016: rightUpLeg
+    100018: shoulders
+    100020: spine
+    100022: //RootNode
     400000: hips
-    400002: //RootNode
-    400004: leftFoot
-    400006: leftUpLeg
-    400008: pasted__pCylinder4
-    400010: rightElbow
-    400012: rightFoot
-    400014: rightHand
-    400016: rightShoulder
-    400018: rightUpLeg
-    400020: shoulders
-    400022: spine
-    400024: polySurface1
-    400026: polySurface10
-    400028: polySurface2
-    400030: transform1
-    400032: transform2
-    400034: transform3
+    400002: leftFoot
+    400004: leftUpLeg
+    400006: pasted__pCylinder4
+    400008: rightElbow
+    400010: rightFoot
+    400012: rightHand
+    400014: rightShoulder
+    400016: rightUpLeg
+    400018: shoulders
+    400020: spine
+    400022: //RootNode
     4300000: pasted__pCylinder4
-    7400000: walk
-    7400002: stab
+    7400000: walking
     9500000: //RootNode
     13700000: pasted__pCylinder4
   materials:
@@ -62,7 +49,7 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -70,9 +57,9 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: walk
-      takeName: Take 001
-      firstFrame: 0
+      name: walking
+      takeName: walking
+      firstFrame: 1
       lastFrame: 40
       wrapMode: 0
       orientationOffsetY: 0
@@ -80,59 +67,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: hips
-        weight: 1
-      - path: hips/leftUpLeg
-        weight: 1
-      - path: hips/leftUpLeg/leftFoot
-        weight: 1
-      - path: hips/rightUpLeg
-        weight: 1
-      - path: hips/rightUpLeg/rightFoot
-        weight: 1
-      - path: hips/spine
-        weight: 1
-      - path: hips/spine/shoulders
-        weight: 1
-      - path: hips/spine/shoulders/rightShoulder
-        weight: 1
-      - path: hips/spine/shoulders/rightShoulder/rightElbow
-        weight: 1
-      - path: hips/spine/shoulders/rightShoulder/rightElbow/rightHand
-        weight: 1
-      - path: pasted__pCylinder4
-        weight: 1
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: stab
-      takeName: Take 001
-      firstFrame: 40
-      lastFrame: 80
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -211,7 +146,7 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2

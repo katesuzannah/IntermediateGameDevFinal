@@ -16,8 +16,6 @@ public class IlluminatiBotAnimationScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Attack ();
-		Debug.Log (myAnimator.GetBool("isWalking"));
-		Debug.Log (myAnimator.GetBool("isStabbing"));
 	}
 
 	void Attack () {
