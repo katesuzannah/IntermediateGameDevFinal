@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour {
     public static GameManager Instance;
 
     public GameObject worldCanvas;
+    public GameObject screenCanvas;
+    public GameObject infoBox;
     public GameObject player;
 
 	// Use this for initialization

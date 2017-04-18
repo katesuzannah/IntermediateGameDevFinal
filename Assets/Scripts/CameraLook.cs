@@ -10,7 +10,7 @@ public class CameraLook : MonoBehaviour {
 	public Collider emptyHold;
 	Vector3 whereAt;
 	public GameObject laptop; 
-	public GameObject laptopPopUpCanvas; 
+	public GameObject laptopPopUpCanvas;
 
 	void Start(){
 		currentlyHeld = emptyHold;
@@ -32,6 +32,8 @@ public class CameraLook : MonoBehaviour {
 
 		//initialize rayHit
 		RaycastHit rayHit = new RaycastHit();
+
+        readObject(ray, rayHit);
 
 		if (currentlyHeld.tag != "book") {
 			//shoot raycast
@@ -66,5 +68,23 @@ public class CameraLook : MonoBehaviour {
 			}
 		}
 	}
-
+    void readObject(Ray ray, RaycastHit rayHit)
+    {
+        if (Input.GetMouseButton(1))
+        {
+            if(Physics.Raycast(ray, out rayHit, 5f))
+            {
+                if(rayHit.collider.tag == "book")
+                {
+                    GameManager.Instance.infoBox.gameObject.SetActive(true);
+                    string data = rayHit.collider.transform.GetComponent<TextData>().data;
+                    GameManager.Instance.infoBox.transform.Find("Object Info").GetComponent<Text>().text = data;
+                }
+            }
+        }
+        else
+        {
+            GameManager.Instance.infoBox.gameObject.SetActive(false);
+        }
+    }
 }
