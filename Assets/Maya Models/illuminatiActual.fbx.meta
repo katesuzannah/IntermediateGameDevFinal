@@ -1,55 +1,65 @@
 fileFormatVersion: 2
-guid: 785443c5c78264db6a4e850483a3d77a
-timeCreated: 1491329626
+guid: 084fbcf408453485e955ad491c2e5db9
+timeCreated: 1492714694
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: group2
+    100000: hips
     100002: //RootNode
-    100004: pasted__pasted__pPyramid1
-    100006: pasted__pCylinder1
-    100008: pasted__pCylinder3
-    100010: pCylinder1
-    100012: pCylinder2
-    100014: pPyramid1
-    100016: pPyramid2
-    100018: pSphere1
-    400000: group2
+    100004: leftFoot
+    100006: leftUpLeg
+    100008: pasted__pCylinder4
+    100010: polySurface1
+    100012: polySurface10
+    100014: polySurface3
+    100016: polySurface4
+    100018: polySurface7
+    100020: polySurface8
+    100022: polySurface9
+    100024: rightElbow
+    100026: rightFoot
+    100028: rightHand
+    100030: rightShoulder
+    100032: rightUpLeg
+    100034: shoulders
+    100036: spine
+    400000: hips
     400002: //RootNode
-    400004: pasted__pasted__pPyramid1
-    400006: pasted__pCylinder1
-    400008: pasted__pCylinder3
-    400010: pCylinder1
-    400012: pCylinder2
-    400014: pPyramid1
-    400016: pPyramid2
-    400018: pSphere1
-    2300000: pasted__pasted__pPyramid1
-    2300002: pasted__pCylinder1
-    2300004: pasted__pCylinder3
-    2300006: pCylinder1
-    2300008: pCylinder2
-    2300010: pPyramid1
-    2300012: pPyramid2
-    2300014: pSphere1
-    3300000: pasted__pasted__pPyramid1
-    3300002: pasted__pCylinder1
-    3300004: pasted__pCylinder3
-    3300006: pCylinder1
-    3300008: pCylinder2
-    3300010: pPyramid1
-    3300012: pPyramid2
-    3300014: pSphere1
-    4300000: pPyramid1
-    4300002: pCylinder1
-    4300004: pasted__pCylinder1
-    4300006: pasted__pasted__pPyramid1
-    4300008: pCylinder2
-    4300010: pSphere1
-    4300012: pPyramid2
-    4300014: pasted__pCylinder3
+    400004: leftFoot
+    400006: leftUpLeg
+    400008: pasted__pCylinder4
+    400010: polySurface1
+    400012: polySurface10
+    400014: polySurface3
+    400016: polySurface4
+    400018: polySurface7
+    400020: polySurface8
+    400022: polySurface9
+    400024: rightElbow
+    400026: rightFoot
+    400028: rightHand
+    400030: rightShoulder
+    400032: rightUpLeg
+    400034: shoulders
+    400036: spine
+    2300000: polySurface8
+    2300002: polySurface9
+    3300000: polySurface8
+    3300002: polySurface9
+    4300000: polySurface3
+    4300002: polySurface8
+    4300004: polySurface9
+    4300006: polySurface10
+    4300008: polySurface1
+    4300010: polySurface4
+    4300012: polySurface7
     9500000: //RootNode
+    13700000: polySurface1
+    13700002: polySurface10
+    13700004: polySurface3
+    13700006: polySurface4
+    13700008: polySurface7
   materials:
     importMaterials: 1
     materialName: 0

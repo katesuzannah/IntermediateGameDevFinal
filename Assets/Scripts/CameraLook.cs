@@ -10,7 +10,9 @@ public class CameraLook : MonoBehaviour {
 	public Collider emptyHold;
 	Vector3 whereAt;
 	public GameObject laptop; 
+	public GameObject creeperPaper;
 	public GameObject laptopPopUpCanvas; 
+	public GameObject creeperPaperCanvas;
 
 	void Start(){
 		currentlyHeld = emptyHold;
@@ -33,12 +35,15 @@ public class CameraLook : MonoBehaviour {
 		//initialize rayHit
 		RaycastHit rayHit = new RaycastHit();
 
+        readObject(ray, rayHit);
+
 		if (currentlyHeld.tag != "book") {
 			//shoot raycast
 			if (Physics.Raycast (ray, out rayHit, 5f)) {
                 //pickup on click
                 if (Input.GetMouseButton (0)) {
 					currentlyHeld = rayHit.collider; //remember what we hit
+					Debug.Log(currentlyHeld);
 					if (currentlyHeld.tag == "book")
                     {
                         //keep it in front of you
@@ -50,6 +55,19 @@ public class CameraLook : MonoBehaviour {
 						laptopPopUpCanvas.SetActive (true);
 						Cursor.visible = true;
 						Cursor.lockState = CursorLockMode.None;
+					} else if (currentlyHeld.tag == "paper"){
+						creeperPaperCanvas.SetActive(true);
+						Cursor.visible = true;
+						Cursor.lockState = CursorLockMode.None;
+					}
+				}
+				if (Input.GetMouseButtonDown(0)) {
+					currentlyHeld = rayHit.collider; //remember what we hit
+					Debug.Log (currentlyHeld.tag);
+					if (currentlyHeld.tag == "lightswitch") {
+						Debug.Log ("light turn on now plz");
+						//flicks lightswitch
+						currentlyHeld.GetComponent<lamp>().switchOn ();
 					}
 				}
             }
@@ -66,5 +84,23 @@ public class CameraLook : MonoBehaviour {
 			}
 		}
 	}
-
+    void readObject(Ray ray, RaycastHit rayHit)
+    {
+        if (Input.GetMouseButton(1))
+        {
+            if(Physics.Raycast(ray, out rayHit, 5f))
+            {
+                if(rayHit.collider.tag == "book")
+                {
+                    GameManager.Instance.infoBox.gameObject.SetActive(true);
+                    string data = rayHit.collider.transform.GetComponent<TextData>().data;
+                    GameManager.Instance.infoBox.transform.Find("Object Info").GetComponent<Text>().text = data;
+                }
+            }
+        }
+        else
+        {
+            GameManager.Instance.infoBox.gameObject.SetActive(false);
+        }
+    }
 }
