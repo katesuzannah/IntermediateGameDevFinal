@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: acbe1abf3df8a4208ae5249db67f7d9e
-timeCreated: 1492542986
+guid: 084fbcf408453485e955ad491c2e5db9
+timeCreated: 1492714694
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -10,28 +10,56 @@ ModelImporter:
     100004: leftFoot
     100006: leftUpLeg
     100008: pasted__pCylinder4
-    100010: rightElbow
-    100012: rightFoot
-    100014: rightHand
-    100016: rightShoulder
-    100018: rightUpLeg
-    100020: shoulders
-    100022: spine
+    100010: polySurface1
+    100012: polySurface10
+    100014: polySurface3
+    100016: polySurface4
+    100018: polySurface7
+    100020: polySurface8
+    100022: polySurface9
+    100024: rightElbow
+    100026: rightFoot
+    100028: rightHand
+    100030: rightShoulder
+    100032: rightUpLeg
+    100034: shoulders
+    100036: spine
     400000: hips
     400002: //RootNode
     400004: leftFoot
     400006: leftUpLeg
     400008: pasted__pCylinder4
-    400010: rightElbow
-    400012: rightFoot
-    400014: rightHand
-    400016: rightShoulder
-    400018: rightUpLeg
-    400020: shoulders
-    400022: spine
-    4300000: pasted__pCylinder4
+    400010: polySurface1
+    400012: polySurface10
+    400014: polySurface3
+    400016: polySurface4
+    400018: polySurface7
+    400020: polySurface8
+    400022: polySurface9
+    400024: rightElbow
+    400026: rightFoot
+    400028: rightHand
+    400030: rightShoulder
+    400032: rightUpLeg
+    400034: shoulders
+    400036: spine
+    2300000: polySurface8
+    2300002: polySurface9
+    3300000: polySurface8
+    3300002: polySurface9
+    4300000: polySurface3
+    4300002: polySurface8
+    4300004: polySurface9
+    4300006: polySurface10
+    4300008: polySurface1
+    4300010: polySurface4
+    4300012: polySurface7
     9500000: //RootNode
-    13700000: pasted__pCylinder4
+    13700000: polySurface1
+    13700002: polySurface10
+    13700004: polySurface3
+    13700006: polySurface4
+    13700008: polySurface7
   materials:
     importMaterials: 1
     materialName: 0
@@ -58,7 +86,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 100
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
