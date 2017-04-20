@@ -21,8 +21,10 @@ public class PlayerMove : MonoBehaviour {
 		//get mouse input data
 		float mouseX = Input.GetAxis ("Mouse X");
 
-		//rotate camera based on mouse movement
-		transform.Rotate(0f, mouseX * 3f, 0f);
+		if (Camera.main.GetComponent<CameraLook> ().looking) {
+			//rotate camera based on mouse movement
+			transform.Rotate (0f, mouseX * 3f, 0f);
+		}
 
         //movement
         // moveVector = new Vector3(Input.GetAxis("Horizontal") * moveSpeed, 0, Input.GetAxis("Vertical") * moveSpeed);

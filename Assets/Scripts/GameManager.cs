@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
     public GameObject screenCanvas;
     public GameObject infoBox;
     public GameObject player;
+    public Transform illuminatiMan;
 
 	// Use this for initialization
 	void Start () {
