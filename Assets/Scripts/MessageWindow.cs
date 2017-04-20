@@ -39,7 +39,7 @@ public class MessageWindow : MonoBehaviour {
             // playCam.currentlyHeld = playCam.emptyHold;
 
             //Take message away, give reply
-            Invoke("generateGovernmentReply", 3f);
+            Invoke("generateGovernmentReply", 1.5f);
             Debug.Log("Replied!");
         }
     }
