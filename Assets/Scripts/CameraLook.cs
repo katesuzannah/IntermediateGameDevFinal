@@ -10,7 +10,9 @@ public class CameraLook : MonoBehaviour {
 	public Collider emptyHold;
 	Vector3 whereAt;
 	public GameObject laptop; 
+	public GameObject creeperPaper;
 	public GameObject laptopPopUpCanvas; 
+	public GameObject creeperPaperCanvas;
 
 	void Start(){
 		currentlyHeld = emptyHold;
@@ -49,6 +51,10 @@ public class CameraLook : MonoBehaviour {
 					} else if (currentlyHeld.tag == "laptop") {
 						//clicks on laptop
 						laptopPopUpCanvas.SetActive (true);
+						Cursor.visible = true;
+						Cursor.lockState = CursorLockMode.None;
+					} else if (currentlyHeld.tag == "paper"){
+						creeperPaperCanvas.SetActive(true);
 						Cursor.visible = true;
 						Cursor.lockState = CursorLockMode.None;
 					}
