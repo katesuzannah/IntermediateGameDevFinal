@@ -37,6 +37,8 @@ public class CameraLook : MonoBehaviour {
 
         readObject(ray, rayHit);
 
+        
+
 		if (currentlyHeld.tag != "book") {
 			//shoot raycast
 			if (Physics.Raycast (ray, out rayHit, 5f)) {
