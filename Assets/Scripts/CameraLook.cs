@@ -13,10 +13,12 @@ public class CameraLook : MonoBehaviour {
 	public GameObject creeperPaper;
 	public GameObject laptopPopUpCanvas; 
 	public GameObject creeperPaperCanvas;
+	public bool looking;
 
 	void Start(){
 		currentlyHeld = emptyHold;
 		whereAt = emptyHold.GetComponent<Transform> ().position;
+		looking = true;
 	}
 
 	// Update is called once per frame
@@ -26,8 +28,10 @@ public class CameraLook : MonoBehaviour {
 		upDownLook -= mouseY;
 		upDownLook = Mathf.Clamp (upDownLook, -26.6f, 26.6f); //constrain look 80 degrees
 
-		//unroll the camera
-		transform.eulerAngles = new Vector3( upDownLook * 3f, transform.eulerAngles.y, 0f);
+		if (looking) {
+			//unroll the camera
+			transform.eulerAngles = new Vector3 (upDownLook * 3f, transform.eulerAngles.y, 0f);
+		}
 
 		//initialize a Ray
 		Ray ray = new Ray (Camera.main.transform.position, Camera.main.transform.forward);
@@ -35,35 +39,40 @@ public class CameraLook : MonoBehaviour {
 		//initialize rayHit
 		RaycastHit rayHit = new RaycastHit();
 
+        readObject(ray, rayHit);
+
+        
+
 		if (currentlyHeld.tag != "book") {
 			//shoot raycast
 			if (Physics.Raycast (ray, out rayHit, 5f)) {
                 //pickup on click
-                if (Input.GetMouseButton (0)) {
+                if (Input.GetMouseButtonDown (0)) {
 					currentlyHeld = rayHit.collider; //remember what we hit
-					Debug.Log(currentlyHeld);
 					if (currentlyHeld.tag == "book")
                     {
                         //keep it in front of you
                         currentlyHeld.transform.parent = Camera.main.transform;
 						currentlyHeld.GetComponent<Rigidbody> ().useGravity = false;
 						whereAt = currentlyHeld.GetComponent<Transform> ().localPosition;
+
 					} else if (currentlyHeld.tag == "laptop") {
 						//clicks on laptop
 						laptopPopUpCanvas.SetActive (true);
 						Cursor.visible = true;
 						Cursor.lockState = CursorLockMode.None;
+						looking = false;
+
 					} else if (currentlyHeld.tag == "paper"){
 						creeperPaperCanvas.SetActive(true);
 						Cursor.visible = true;
 						Cursor.lockState = CursorLockMode.None;
+						looking = false;
 					}
 				}
 				if (Input.GetMouseButtonDown(0)) {
 					currentlyHeld = rayHit.collider; //remember what we hit
-					Debug.Log (currentlyHeld.tag);
 					if (currentlyHeld.tag == "lightswitch") {
-						Debug.Log ("light turn on now plz");
 						//flicks lightswitch
 						currentlyHeld.GetComponent<lamp>().switchOn ();
 					}
@@ -82,5 +91,23 @@ public class CameraLook : MonoBehaviour {
 			}
 		}
 	}
-
+    void readObject(Ray ray, RaycastHit rayHit)
+    {
+        if (Input.GetMouseButton(1))
+        {
+            if(Physics.Raycast(ray, out rayHit, 5f))
+            {
+                if(rayHit.collider.tag == "book")
+                {
+                    GameManager.Instance.infoBox.gameObject.SetActive(true);
+                    string data = rayHit.collider.transform.GetComponent<TextData>().data;
+                    GameManager.Instance.infoBox.transform.Find("Object Info").GetComponent<Text>().text = data;
+                }
+            }
+        }
+        else
+        {
+            GameManager.Instance.infoBox.gameObject.SetActive(false);
+        }
+    }
 }
