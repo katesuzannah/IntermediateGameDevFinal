@@ -19,7 +19,8 @@ public class pyramidScript : MonoBehaviour {
 
 	void OnCollisionEnter (Collision col) {
 		if (col.gameObject.tag == "ceiling" && instantiate) {
-			Instantiate (bot);
+			GameObject botman = Instantiate (bot);
+            GameManager.Instance.illuminatiMan = botman.transform;
 			instantiate = false;
 		}
 	}
