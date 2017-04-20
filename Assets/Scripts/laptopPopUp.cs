@@ -37,6 +37,7 @@ public class laptopPopUp : MonoBehaviour {
 		laptopPopUpCanvas.SetActive (false);
 		Cursor.visible = false;
 		Cursor.lockState = CursorLockMode.Locked;
+		Camera.main.GetComponent<CameraLook> ().looking = true;
 	}
 
 }
