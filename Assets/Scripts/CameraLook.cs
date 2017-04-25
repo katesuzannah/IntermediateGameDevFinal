@@ -13,10 +13,12 @@ public class CameraLook : MonoBehaviour {
 	public GameObject creeperPaper;
 	public GameObject laptopPopUpCanvas; 
 	public GameObject creeperPaperCanvas;
+	public bool looking;
 
 	void Start(){
 		currentlyHeld = emptyHold;
 		whereAt = emptyHold.GetComponent<Transform> ().position;
+		looking = true;
 	}
 
 	// Update is called once per frame
@@ -26,8 +28,10 @@ public class CameraLook : MonoBehaviour {
 		upDownLook -= mouseY;
 		upDownLook = Mathf.Clamp (upDownLook, -26.6f, 26.6f); //constrain look 80 degrees
 
-		//unroll the camera
-		transform.eulerAngles = new Vector3( upDownLook * 3f, transform.eulerAngles.y, 0f);
+		if (looking) {
+			//unroll the camera
+			transform.eulerAngles = new Vector3 (upDownLook * 3f, transform.eulerAngles.y, 0f);
+		}
 
 		//initialize a Ray
 		Ray ray = new Ray (Camera.main.transform.position, Camera.main.transform.forward);
@@ -43,31 +47,32 @@ public class CameraLook : MonoBehaviour {
 			//shoot raycast
 			if (Physics.Raycast (ray, out rayHit, 5f)) {
                 //pickup on click
-                if (Input.GetMouseButton (0)) {
+                if (Input.GetMouseButtonDown (0)) {
 					currentlyHeld = rayHit.collider; //remember what we hit
-					Debug.Log(currentlyHeld);
 					if (currentlyHeld.tag == "book")
                     {
                         //keep it in front of you
                         currentlyHeld.transform.parent = Camera.main.transform;
 						currentlyHeld.GetComponent<Rigidbody> ().useGravity = false;
 						whereAt = currentlyHeld.GetComponent<Transform> ().localPosition;
+
 					} else if (currentlyHeld.tag == "laptop") {
 						//clicks on laptop
 						laptopPopUpCanvas.SetActive (true);
 						Cursor.visible = true;
 						Cursor.lockState = CursorLockMode.None;
+						looking = false;
+
 					} else if (currentlyHeld.tag == "paper"){
 						creeperPaperCanvas.SetActive(true);
 						Cursor.visible = true;
 						Cursor.lockState = CursorLockMode.None;
+						looking = false;
 					}
 				}
 				if (Input.GetMouseButtonDown(0)) {
 					currentlyHeld = rayHit.collider; //remember what we hit
-					Debug.Log (currentlyHeld.tag);
 					if (currentlyHeld.tag == "lightswitch") {
-						Debug.Log ("light turn on now plz");
 						//flicks lightswitch
 						currentlyHeld.GetComponent<lamp>().switchOn ();
 					}
@@ -81,6 +86,13 @@ public class CameraLook : MonoBehaviour {
                 {
                     currentlyHeld.transform.SetParent (null);
 					currentlyHeld.GetComponent<Rigidbody> ().useGravity = true;
+					currentlyHeld = emptyHold;
+				}
+			} else if (Input.GetKeyDown(KeyCode.E)){
+				if ((currentlyHeld.tag == "book") || (currentlyHeld.tag == "paper")) {
+					currentlyHeld.transform.SetParent (null);
+					currentlyHeld.GetComponent<Rigidbody> ().useGravity = true;
+					currentlyHeld.GetComponent<Rigidbody> ().AddForce (Camera.main.transform.forward * 400f);
 					currentlyHeld = emptyHold;
 				}
 			}
