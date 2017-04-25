@@ -1,59 +1,15 @@
 fileFormatVersion: 2
-guid: 3bc81066b113f4dfdbe383fa2f339c2c
-timeCreated: 1491400429
+guid: 58a89579f5add49488a90b60f4548fa0
+timeCreated: 1493144328
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
-    100002: group1
-    100004: group2
-    100006: group3
-    100008: group4
-    100010: group5
-    100012: pasted__group
-    100014: pasted__group 1
-    100016: pasted__group1
-    100018: pasted__group3
-    100020: pasted__pasted__group
-    100022: pasted__pasted__group 1
-    100024: pasted__pasted__pasted__pCube2
-    100026: pasted__pasted__pasted__pCube2 1
-    100028: pasted__pasted__pCube2
-    100030: pasted__pasted__pCube2 1
-    100032: pasted__pCube2
     400000: //RootNode
-    400002: group1
-    400004: group2
-    400006: group3
-    400008: group4
-    400010: group5
-    400012: pasted__group
-    400014: pasted__group 1
-    400016: pasted__group1
-    400018: pasted__group3
-    400020: pasted__pasted__group
-    400022: pasted__pasted__group 1
-    400024: pasted__pasted__pasted__pCube2
-    400026: pasted__pasted__pasted__pCube2 1
-    400028: pasted__pasted__pCube2
-    400030: pasted__pasted__pCube2 1
-    400032: pasted__pCube2
-    2300000: pasted__pasted__pasted__pCube2
-    2300002: pasted__pasted__pasted__pCube2 1
-    2300004: pasted__pasted__pCube2
-    2300006: pasted__pasted__pCube2 1
-    2300008: pasted__pCube2
-    3300000: pasted__pasted__pasted__pCube2
-    3300002: pasted__pasted__pasted__pCube2 1
-    3300004: pasted__pasted__pCube2
-    3300006: pasted__pasted__pCube2 1
-    3300008: pasted__pCube2
-    4300000: pasted__pasted__pasted__pCube2
-    4300002: pasted__pasted__pCube2
-    4300004: pasted__pasted__pasted__pCube2
-    4300006: pasted__pCube2
-    4300008: pasted__pasted__pCube2
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: polySurface11
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -81,7 +37,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 4
+    globalScale: 48
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
