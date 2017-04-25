@@ -88,6 +88,13 @@ public class CameraLook : MonoBehaviour {
 					currentlyHeld.GetComponent<Rigidbody> ().useGravity = true;
 					currentlyHeld = emptyHold;
 				}
+			} else if (Input.GetKeyDown(KeyCode.E)){
+				if ((currentlyHeld.tag == "book") || (currentlyHeld.tag == "paper")) {
+					currentlyHeld.transform.SetParent (null);
+					currentlyHeld.GetComponent<Rigidbody> ().useGravity = true;
+					currentlyHeld.GetComponent<Rigidbody> ().AddForce (Camera.main.transform.forward * 400f);
+					currentlyHeld = emptyHold;
+				}
 			}
 		}
 	}
