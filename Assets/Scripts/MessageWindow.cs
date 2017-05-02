@@ -27,7 +27,9 @@ public class MessageWindow : MonoBehaviour {
         "wanted",
         "did",
         "saw",
-        "looked",
+        "looked at",
+        "stopped",
+        "took pictures of"
     };
 
     string[] adjectives =
@@ -126,7 +128,10 @@ public class MessageWindow : MonoBehaviour {
         newMessage += verbs[Random.Range(0, verbs.Length)] + " the ";
         newMessage += nouns[Random.Range(0, nouns.Length)] + " ";
         newMessage += conjunctions[Random.Range(0, conjunctions.Length)] + " ";
-        newMessage += (pronouns[Random.Range(0, pronouns.Length)].ToLower()) + " ";
+        int nextPronounIdx = Random.Range(0, pronouns.Length);
+        string nextPro = pronouns[nextPronounIdx];
+        if(nextPro != pronouns[0]) {newMessage += nextPro.ToLower() + " "; }
+        else { newMessage += nextPro + " "; }
         if (Random.value > 0.5f) { newMessage += adverbs[Random.Range(0, adverbs.Length)] + " "; }
         newMessage += verbs[Random.Range(0, verbs.Length)] + " the ";
         newMessage += nouns[Random.Range(0, nouns.Length)];
