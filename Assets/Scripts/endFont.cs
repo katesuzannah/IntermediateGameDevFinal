@@ -30,10 +30,16 @@ public class endFont : MonoBehaviour {
 			counter++;
 		}
 		else if (counter == 2) {
-			screenText.color = new Color (255f, 255f, 255f, 132f);
 			counter++;
 		}
 		else if (counter == 3) {
+			screenText.color = new Color (255f, 255f, 255f, 132f);
+			counter++;
+		}
+		else if (counter == 4) {
+			counter++;
+		}
+		else if (counter == 5) {
 			counter = 0;
 		}
 		if (timer > 2f) {
