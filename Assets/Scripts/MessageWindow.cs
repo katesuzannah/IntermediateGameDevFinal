@@ -17,6 +17,9 @@ public class MessageWindow : MonoBehaviour {
         "You",
         "He",
         "She",
+        "We",
+        "It",
+        "They",
     };
 
     string[] verbs =
@@ -24,21 +27,47 @@ public class MessageWindow : MonoBehaviour {
         "wanted",
         "did",
         "saw",
+        "looked",
     };
 
     string[] adjectives =
     {
-
+        "silly",
+        "huge",
+        "small",
+        "fat",
+        "sparkly",
     };
 
     string[] nouns =
     {
-
+        "cake",
+        "dance",
+        "booze",
+        "man",
+        "hair",
     };
 
     string[] adverbs =
     {
+        "really",
+        "quickly",
+        "slowly",
+        "hugely",
+        "stupidly",
+    };
 
+    string[] conjunctions =
+    {
+        "and",
+        "but",
+    };
+
+    char[] punctuations =
+    {
+        '.',
+        '?',
+        '!',
     };
 	// Use this for initialization
 	void Start () {
@@ -85,7 +114,7 @@ public class MessageWindow : MonoBehaviour {
             coll.GetComponent<Rigidbody>().useGravity = false;
             playCam.currentlyHeld = playCam.emptyHold;
             Destroy(coll.gameObject);
-            generateGenericReply();
+            Invoke("generateGenericReply", 1.5f);
         }
     }
 
@@ -93,8 +122,15 @@ public class MessageWindow : MonoBehaviour {
     {
         string newMessage = "";
         newMessage += pronouns[Random.Range(0, pronouns.Length)] + " ";
-        newMessage += verbs[Random.Range(0, pronouns.Length)] + " the";
-        newMessage += nouns[Random.Range(0, pronouns.Length)] + " ";
+        if (Random.value > 0.5f) { newMessage += adverbs[Random.Range(0, adverbs.Length)] + " "; }
+        newMessage += verbs[Random.Range(0, verbs.Length)] + " the ";
+        newMessage += nouns[Random.Range(0, nouns.Length)] + " ";
+        newMessage += conjunctions[Random.Range(0, conjunctions.Length)] + " ";
+        newMessage += (pronouns[Random.Range(0, pronouns.Length)].ToLower()) + " ";
+        if (Random.value > 0.5f) { newMessage += adverbs[Random.Range(0, adverbs.Length)] + " "; }
+        newMessage += verbs[Random.Range(0, verbs.Length)] + " the ";
+        newMessage += nouns[Random.Range(0, nouns.Length)];
+        newMessage += punctuations[Random.Range(0, punctuations.Length)];
         return newMessage;
     }
 
@@ -109,7 +145,6 @@ public class MessageWindow : MonoBehaviour {
         GetComponent<TextData>().data = "You have 1 new message!";
         GameObject newReply = Instantiate(replyMessage);
         newReply.transform.position = transform.position - transform.forward.normalized;
-        // Invoke("generateGovernmentReply", 1.5f);
         GetComponent<TextData>().data = "You have no new messages!";
         newReply.GetComponent<TextData>().data = generateMessage();
     }
