@@ -18,6 +18,7 @@ public class returnToRoom : MonoBehaviour {
     {
         if(coll.GetComponent<Rigidbody>() != null)
         {
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
             coll.transform.position = Vector3.up;
         }
     }

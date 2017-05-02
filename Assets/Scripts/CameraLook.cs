@@ -89,7 +89,8 @@ public class CameraLook : MonoBehaviour {
 					currentlyHeld = emptyHold;
 				}
 			} else if (Input.GetKeyDown(KeyCode.E)){
-				if ((currentlyHeld.tag == "book") || (currentlyHeld.tag == "paper")) {
+				if ((currentlyHeld.tag == "book")
+                    || (currentlyHeld.tag == "paper")) {
 					currentlyHeld.transform.SetParent (null);
 					currentlyHeld.GetComponent<Rigidbody> ().useGravity = true;
 					currentlyHeld.GetComponent<Rigidbody> ().AddForce (Camera.main.transform.forward * 400f);
@@ -104,7 +105,9 @@ public class CameraLook : MonoBehaviour {
         {
             if(Physics.Raycast(ray, out rayHit, 5f))
             {
-                if(rayHit.collider.tag == "book")
+                if((rayHit.collider.tag == "book"
+                   || rayHit.collider.tag == "message")
+                   && rayHit.collider.transform.GetComponent<TextData>() != null)
                 {
                     GameManager.Instance.infoBox.gameObject.SetActive(true);
                     string data = rayHit.collider.transform.GetComponent<TextData>().data;
