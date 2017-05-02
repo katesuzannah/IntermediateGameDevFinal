@@ -5,6 +5,7 @@ using UnityEngine;
 public class secretPoliticalBook : MonoBehaviour {
 
     public GameObject bookcase;
+    public GameObject govRoom;
     Vector3 originalPos;
     float maxDistance = 0.2f;
     bool pulled;
@@ -22,6 +23,7 @@ public class secretPoliticalBook : MonoBehaviour {
         {
             bookcase.GetComponent<bookcase>().bookPulled = true;
             pulled = true;
+            govRoom.SetActive(true);
         }
 	}
 

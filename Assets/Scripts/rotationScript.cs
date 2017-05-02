@@ -2,16 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TextData : MonoBehaviour {
+public class rotationScript : MonoBehaviour {
 
-    public string data;
-    public messageType messType;
-
-    public enum messageType
-    {
-        book = 0x01,
-        message = 0x02,
-    }
+    float speed = 15f;
 
 	// Use this for initialization
 	void Start () {
@@ -20,6 +13,6 @@ public class TextData : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        transform.Rotate(new Vector3(0, speed * Time.deltaTime, 0));
 	}
 }

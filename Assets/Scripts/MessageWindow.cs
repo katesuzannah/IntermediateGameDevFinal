@@ -9,6 +9,32 @@ public class MessageWindow : MonoBehaviour {
     public GameObject secretPoliticalMessage;
     public GameObject secretPoliticoReply;
 
+    public GameObject replyMessage;
+
+    string[] pronouns =
+    {
+
+    };
+
+    string[] verbs =
+    {
+
+    };
+
+    string[] adjectives =
+    {
+
+    };
+
+    string[] nouns =
+    {
+
+    };
+
+    string[] adverbs =
+    {
+
+    };
 	// Use this for initialization
 	void Start () {
 		
@@ -40,12 +66,36 @@ public class MessageWindow : MonoBehaviour {
 
             //Take message away, give reply
             Invoke("generateGovernmentReply", 1.5f);
+            GetComponent<TextData>().data = "You have no new messages!";
             Debug.Log("Replied!");
         }
+        else if(coll.transform.GetComponent<TextData>() != null
+            && coll.transform.GetComponent<TextData>().messType == TextData.messageType.message)
+        {
+            CameraLook playCam = GameManager.Instance.player.GetComponent<CameraLook>();
+
+            // GameObject heldMessage = coll.gameObject;
+            playCam.currentlyHeld = playCam.emptyHold;
+            Destroy(coll.gameObject);
+            GameObject newReply = Instantiate(replyMessage);
+            Invoke("generateGovernmentReply", 1.5f);
+            GetComponent<TextData>().data = "You have no new messages!";
+            newReply.GetComponent<TextData>().data = generateMessage();
+        }
+    }
+
+    string generateMessage()
+    {
+        string newMessage = "";
+        newMessage += pronouns[Random.Range(0, pronouns.Length)] + " ";
+        newMessage += verbs[Random.Range(0, pronouns.Length)] + " the";
+        newMessage += nouns[Random.Range(0, pronouns.Length)] + " ";
+        return newMessage;
     }
 
     void generateGovernmentReply()
     {
-        Instantiate(secretPoliticoReply, new Vector3(3, 2, 4), Quaternion.identity);
+        GetComponent<TextData>().data = "You have 1 new message!";
+        Instantiate(secretPoliticoReply, transform.position, Quaternion.identity);
     }
 }
