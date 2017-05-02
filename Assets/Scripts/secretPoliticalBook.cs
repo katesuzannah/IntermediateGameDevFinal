@@ -7,7 +7,7 @@ public class secretPoliticalBook : MonoBehaviour {
     public GameObject bookcase;
     public GameObject govRoom;
     Vector3 originalPos;
-    float maxDistance = 0.2f;
+    float maxDistance = 0.4f;
     bool pulled;
 
 	// Use this for initialization

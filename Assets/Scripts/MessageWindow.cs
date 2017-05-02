@@ -13,12 +13,17 @@ public class MessageWindow : MonoBehaviour {
 
     string[] pronouns =
     {
-
+        "I",
+        "You",
+        "He",
+        "She",
     };
 
     string[] verbs =
     {
-
+        "wanted",
+        "did",
+        "saw",
     };
 
     string[] adjectives =
@@ -61,7 +66,7 @@ public class MessageWindow : MonoBehaviour {
             secretPoliticalMessage.GetComponent<Rigidbody>().isKinematic = true;
             secretPoliticalMessage.GetComponent<Rigidbody>().useGravity = false;
             secretPoliticalMessage = null;
-            CameraLook playCam = GameManager.Instance.player.GetComponent<CameraLook>();
+            CameraLook playCam = GameManager.Instance.player.transform.Find("Main Camera").GetComponent<CameraLook>();
             // playCam.currentlyHeld = playCam.emptyHold;
 
             //Take message away, give reply
@@ -72,15 +77,15 @@ public class MessageWindow : MonoBehaviour {
         else if(coll.transform.GetComponent<TextData>() != null
             && coll.transform.GetComponent<TextData>().messType == TextData.messageType.message)
         {
-            CameraLook playCam = GameManager.Instance.player.GetComponent<CameraLook>();
+            CameraLook playCam = GameManager.Instance.player.transform.Find("Main Camera").GetComponent<CameraLook>();
 
             // GameObject heldMessage = coll.gameObject;
+            coll.transform.parent = transform;
+            coll.GetComponent<Rigidbody>().isKinematic = true;
+            coll.GetComponent<Rigidbody>().useGravity = false;
             playCam.currentlyHeld = playCam.emptyHold;
             Destroy(coll.gameObject);
-            GameObject newReply = Instantiate(replyMessage);
-            Invoke("generateGovernmentReply", 1.5f);
-            GetComponent<TextData>().data = "You have no new messages!";
-            newReply.GetComponent<TextData>().data = generateMessage();
+            generateGenericReply();
         }
     }
 
@@ -97,5 +102,15 @@ public class MessageWindow : MonoBehaviour {
     {
         GetComponent<TextData>().data = "You have 1 new message!";
         Instantiate(secretPoliticoReply, transform.position, Quaternion.identity);
+    }
+
+    void generateGenericReply()
+    {
+        GetComponent<TextData>().data = "You have 1 new message!";
+        GameObject newReply = Instantiate(replyMessage);
+        newReply.transform.position = transform.position - transform.forward.normalized;
+        // Invoke("generateGovernmentReply", 1.5f);
+        GetComponent<TextData>().data = "You have no new messages!";
+        newReply.GetComponent<TextData>().data = generateMessage();
     }
 }
