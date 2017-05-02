@@ -9,6 +9,37 @@ public class MessageWindow : MonoBehaviour {
     public GameObject secretPoliticalMessage;
     public GameObject secretPoliticoReply;
 
+    public GameObject replyMessage;
+
+    string[] pronouns =
+    {
+        "I",
+        "You",
+        "He",
+        "She",
+    };
+
+    string[] verbs =
+    {
+        "wanted",
+        "did",
+        "saw",
+    };
+
+    string[] adjectives =
+    {
+
+    };
+
+    string[] nouns =
+    {
+
+    };
+
+    string[] adverbs =
+    {
+
+    };
 	// Use this for initialization
 	void Start () {
 		
@@ -35,17 +66,51 @@ public class MessageWindow : MonoBehaviour {
             secretPoliticalMessage.GetComponent<Rigidbody>().isKinematic = true;
             secretPoliticalMessage.GetComponent<Rigidbody>().useGravity = false;
             secretPoliticalMessage = null;
-            CameraLook playCam = GameManager.Instance.player.GetComponent<CameraLook>();
+            CameraLook playCam = GameManager.Instance.player.transform.Find("Main Camera").GetComponent<CameraLook>();
             // playCam.currentlyHeld = playCam.emptyHold;
 
             //Take message away, give reply
             Invoke("generateGovernmentReply", 1.5f);
+            GetComponent<TextData>().data = "You have no new messages!";
             Debug.Log("Replied!");
         }
+        else if(coll.transform.GetComponent<TextData>() != null
+            && coll.transform.GetComponent<TextData>().messType == TextData.messageType.message)
+        {
+            CameraLook playCam = GameManager.Instance.player.transform.Find("Main Camera").GetComponent<CameraLook>();
+
+            // GameObject heldMessage = coll.gameObject;
+            coll.transform.parent = transform;
+            coll.GetComponent<Rigidbody>().isKinematic = true;
+            coll.GetComponent<Rigidbody>().useGravity = false;
+            playCam.currentlyHeld = playCam.emptyHold;
+            Destroy(coll.gameObject);
+            generateGenericReply();
+        }
+    }
+
+    string generateMessage()
+    {
+        string newMessage = "";
+        newMessage += pronouns[Random.Range(0, pronouns.Length)] + " ";
+        newMessage += verbs[Random.Range(0, pronouns.Length)] + " the";
+        newMessage += nouns[Random.Range(0, pronouns.Length)] + " ";
+        return newMessage;
     }
 
     void generateGovernmentReply()
     {
-        Instantiate(secretPoliticoReply, new Vector3(3, 2, 4), Quaternion.identity);
+        GetComponent<TextData>().data = "You have 1 new message!";
+        Instantiate(secretPoliticoReply, transform.position, Quaternion.identity);
+    }
+
+    void generateGenericReply()
+    {
+        GetComponent<TextData>().data = "You have 1 new message!";
+        GameObject newReply = Instantiate(replyMessage);
+        newReply.transform.position = transform.position - transform.forward.normalized;
+        // Invoke("generateGovernmentReply", 1.5f);
+        GetComponent<TextData>().data = "You have no new messages!";
+        newReply.GetComponent<TextData>().data = generateMessage();
     }
 }
