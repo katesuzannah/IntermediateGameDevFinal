@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndingTrigger : MonoBehaviour {
 
@@ -25,6 +26,7 @@ public class EndingTrigger : MonoBehaviour {
 
 	void Ending(){
 		Debug.Log ("YAY");
+        SceneManager.LoadScene("killedByIlluminati");
 	}
 
 }
