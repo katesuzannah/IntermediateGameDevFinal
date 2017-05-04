@@ -7,14 +7,14 @@ public class bookcase : MonoBehaviour {
     public bool bookPulled;
     Vector3 originalPos;
     Vector3 revealDest;
-	// Use this for initialization
+
 	void Start () {
         bookPulled = false;
         originalPos = transform.position;
         revealDest = transform.position + Vector3.up * 2.5f;
 	}
 	
-	// Update is called once per frame
+
 	void Update () {
         if (bookPulled)
         {
