@@ -48,7 +48,7 @@ public class endFont : MonoBehaviour {
 		}
 
 		if (Input.GetKeyDown(KeyCode.Space)) {
-			SceneManager.LoadScene ("login");
+			SceneManager.LoadScene ("loginSnips");
 		}
 	}
 }
