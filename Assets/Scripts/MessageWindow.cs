@@ -114,13 +114,10 @@ public class MessageWindow : MonoBehaviour {
         // If political message is brought here, take away and respond with new political message.
         if (coll.gameObject == secretPoliticalMessage)
         {
-            secretPoliticalMessage.transform.parent = transform;
-            secretPoliticalMessage.GetComponent<Rigidbody>().isKinematic = true;
-            secretPoliticalMessage.GetComponent<Rigidbody>().useGravity = false;
-            secretPoliticalMessage = null;
+            
             CameraLook playCam = GameManager.Instance.player.transform.Find("Main Camera").GetComponent<CameraLook>();
-            // playCam.currentlyHeld = playCam.emptyHold;
-
+            playCam.currentlyHeld = playCam.emptyHold;
+            Destroy(coll.gameObject);
             //Take message away, give reply
             Invoke("generateGovernmentReply", 1.5f);
             GetComponent<TextData>().data = "You have no new messages!";
