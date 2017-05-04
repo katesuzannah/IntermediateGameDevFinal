@@ -6,6 +6,8 @@ public class MessageWindow : MonoBehaviour {
 
     public GameObject pigeon;
 
+	AudioSource youveGotMail;
+
     public GameObject secretPoliticalMessage;
     public GameObject secretPoliticoReply;
     public GameObject pillowMessage;
@@ -91,12 +93,11 @@ public class MessageWindow : MonoBehaviour {
         '?',
         '!',
     };
-	// Use this for initialization
+
 	void Start () {
-		
+		youveGotMail = GetComponent<AudioSource> ();
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
         //Keep the letter in the room.
         if (secretPoliticalMessage != null && 
@@ -113,13 +114,10 @@ public class MessageWindow : MonoBehaviour {
         // If political message is brought here, take away and respond with new political message.
         if (coll.gameObject == secretPoliticalMessage)
         {
-            secretPoliticalMessage.transform.parent = transform;
-            secretPoliticalMessage.GetComponent<Rigidbody>().isKinematic = true;
-            secretPoliticalMessage.GetComponent<Rigidbody>().useGravity = false;
-            secretPoliticalMessage = null;
+            
             CameraLook playCam = GameManager.Instance.player.transform.Find("Main Camera").GetComponent<CameraLook>();
-            // playCam.currentlyHeld = playCam.emptyHold;
-
+            playCam.currentlyHeld = playCam.emptyHold;
+            Destroy(coll.gameObject);
             //Take message away, give reply
             Invoke("generateGovernmentReply", 1.5f);
             GetComponent<TextData>().data = "You have no new messages!";
@@ -183,30 +181,35 @@ public class MessageWindow : MonoBehaviour {
 
     void generateGovernmentReply()
     {
+		youveGotMail.Play ();	
         GetComponent<TextData>().data = "You have 1 new message!";
         Instantiate(secretPoliticoReply, transform.position, Quaternion.identity);
     }
 
     void generateWardrobeReply()
     {
+		youveGotMail.Play ();
         GetComponent<TextData>().data = "You have 1 new message!";
         Instantiate(wardrobeReply, transform.position, Quaternion.identity);
     }
 
     void generatePillowReply()
     {
+		youveGotMail.Play ();
         GetComponent<TextData>().data = "You have 1 new message!";
         Instantiate(pillowReply, transform.position, Quaternion.identity);
     }
 
     void generateGovReply()
     {
+		youveGotMail.Play ();
         GetComponent<TextData>().data = "You have 1 new message!";
         Instantiate(govReply, transform.position, Quaternion.identity);
     }
 
     void generateGenericReply()
     {
+		youveGotMail.Play ();
         GetComponent<TextData>().data = "You have 1 new message!";
         GameObject newReply = Instantiate(replyMessage);
         newReply.transform.position = transform.Find("pigeon").position + transform.Find("pigeon").forward * 0.6f;

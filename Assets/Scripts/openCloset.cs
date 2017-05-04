@@ -14,11 +14,11 @@ public class openCloset : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.G)) {
-			openClosetDoor ();
+			// openClosetDoor ();
 		}
 	}
 
-	void openClosetDoor () {
+	public void openClosetDoor () {
 		if ((name == "leftDoor" && open == false) || (name == "rightDoor" && open)) {
 			transform.Rotate (0f, 150f, 0f);
 			if (open) {
