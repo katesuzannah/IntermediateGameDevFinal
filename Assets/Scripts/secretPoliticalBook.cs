@@ -11,14 +11,12 @@ public class secretPoliticalBook : MonoBehaviour {
     bool pulled;
 	AudioSource zelda;
 
-	// Use this for initialization
 	void Start () {
         originalPos = transform.position;
         pulled = false;
 		zelda = GetComponent<AudioSource> ();
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
         float dist = Vector3.Distance(transform.position, originalPos);
         if(dist > maxDistance && !pulled)
@@ -29,9 +27,4 @@ public class secretPoliticalBook : MonoBehaviour {
             govRoom.SetActive(true);
         }
 	}
-
-    void OnCollisionEnter(Collision coll)
-    {
-
-    }
 }
