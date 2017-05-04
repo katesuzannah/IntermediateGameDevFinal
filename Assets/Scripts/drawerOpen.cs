@@ -8,7 +8,7 @@ public class drawerOpen : MonoBehaviour {
 
 	// end point for Lerp
 	Vector3 end;
-
+    public GameObject ceilingImage;
 	bool drawerOpening = false;
 
 	void Start () {
@@ -22,6 +22,7 @@ public class drawerOpen : MonoBehaviour {
 		//Call OpenDrawer if player clicks on drawer, but right now just do it with Q for debugging purposes
 		if (lamp.flickers == 6) {
 			drawerOpening = true;
+            ceilingImage.SetActive(true);
 		}
 	}
 
