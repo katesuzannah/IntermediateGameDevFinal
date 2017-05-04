@@ -13,6 +13,7 @@ public class CameraLook : MonoBehaviour {
 	public GameObject creeperPaper;
 	public GameObject laptopPopUpCanvas; 
 	public GameObject creeperPaperCanvas;
+    // public LayerMask ignorePlayer;
 	public bool looking;
 
 	void Start(){
@@ -76,6 +77,11 @@ public class CameraLook : MonoBehaviour {
 						//flicks lightswitch
 						currentlyHeld.GetComponent<lamp>().switchOn ();
 					}
+                    if(currentlyHeld.tag == "closet")
+                    {
+                        // open closet door
+                        currentlyHeld.GetComponent<openCloset>().openClosetDoor();
+                    }
 				}
             }
 		} else {
