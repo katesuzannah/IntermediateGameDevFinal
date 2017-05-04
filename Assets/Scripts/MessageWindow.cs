@@ -111,7 +111,7 @@ public class MessageWindow : MonoBehaviour {
     void OnTriggerEnter(Collider coll)
     {
         // If political message is brought here, take away and respond with new political message.
-        if(coll.gameObject == secretPoliticalMessage)
+        if (coll.gameObject == secretPoliticalMessage)
         {
             secretPoliticalMessage.transform.parent = transform;
             secretPoliticalMessage.GetComponent<Rigidbody>().isKinematic = true;
@@ -124,6 +124,28 @@ public class MessageWindow : MonoBehaviour {
             Invoke("generateGovernmentReply", 1.5f);
             GetComponent<TextData>().data = "You have no new messages!";
             Debug.Log("Replied!");
+        }
+        else if (coll.gameObject == wardrobeMessage)
+        {
+            CameraLook playCam = GameManager.Instance.player.transform.Find("Main Camera").GetComponent<CameraLook>();
+            playCam.currentlyHeld = playCam.emptyHold;
+            Destroy(coll.gameObject);
+            Invoke("generateWardrobeReply", 1.5f);
+        }
+        else if (coll.gameObject == pillowMessage)
+        {
+            CameraLook playCam = GameManager.Instance.player.transform.Find("Main Camera").GetComponent<CameraLook>();
+            playCam.currentlyHeld = playCam.emptyHold;
+            Destroy(coll.gameObject);
+            Invoke("generatePillowReply", 1.5f);
+        }
+        else if (coll.gameObject == govMessage)
+        {
+
+            CameraLook playCam = GameManager.Instance.player.transform.Find("Main Camera").GetComponent<CameraLook>();
+            playCam.currentlyHeld = playCam.emptyHold;
+            Destroy(coll.gameObject);
+            Invoke("generateGovReply", 1.5f);
         }
         else if(coll.transform.GetComponent<TextData>() != null
             && coll.transform.GetComponent<TextData>().messType == TextData.messageType.message)
@@ -163,6 +185,24 @@ public class MessageWindow : MonoBehaviour {
     {
         GetComponent<TextData>().data = "You have 1 new message!";
         Instantiate(secretPoliticoReply, transform.position, Quaternion.identity);
+    }
+
+    void generateWardrobeReply()
+    {
+        GetComponent<TextData>().data = "You have 1 new message!";
+        Instantiate(wardrobeReply, transform.position, Quaternion.identity);
+    }
+
+    void generatePillowReply()
+    {
+        GetComponent<TextData>().data = "You have 1 new message!";
+        Instantiate(pillowReply, transform.position, Quaternion.identity);
+    }
+
+    void generateGovReply()
+    {
+        GetComponent<TextData>().data = "You have 1 new message!";
+        Instantiate(govReply, transform.position, Quaternion.identity);
     }
 
     void generateGenericReply()
