@@ -6,6 +6,8 @@ public class MessageWindow : MonoBehaviour {
 
     public GameObject pigeon;
 
+	AudioSource youveGotMail;
+
     public GameObject secretPoliticalMessage;
     public GameObject secretPoliticoReply;
     public GameObject pillowMessage;
@@ -91,12 +93,11 @@ public class MessageWindow : MonoBehaviour {
         '?',
         '!',
     };
-	// Use this for initialization
+
 	void Start () {
-		
+		youveGotMail = GetComponent<AudioSource> ();
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
         //Keep the letter in the room.
         if (secretPoliticalMessage != null && 
@@ -183,30 +184,35 @@ public class MessageWindow : MonoBehaviour {
 
     void generateGovernmentReply()
     {
+		youveGotMail.Play ();	
         GetComponent<TextData>().data = "You have 1 new message!";
         Instantiate(secretPoliticoReply, transform.position, Quaternion.identity);
     }
 
     void generateWardrobeReply()
     {
+		youveGotMail.Play ();
         GetComponent<TextData>().data = "You have 1 new message!";
         Instantiate(wardrobeReply, transform.position, Quaternion.identity);
     }
 
     void generatePillowReply()
     {
+		youveGotMail.Play ();
         GetComponent<TextData>().data = "You have 1 new message!";
         Instantiate(pillowReply, transform.position, Quaternion.identity);
     }
 
     void generateGovReply()
     {
+		youveGotMail.Play ();
         GetComponent<TextData>().data = "You have 1 new message!";
         Instantiate(govReply, transform.position, Quaternion.identity);
     }
 
     void generateGenericReply()
     {
+		youveGotMail.Play ();
         GetComponent<TextData>().data = "You have 1 new message!";
         GameObject newReply = Instantiate(replyMessage);
         newReply.transform.position = transform.Find("pigeon").position + transform.Find("pigeon").forward * 0.6f;
