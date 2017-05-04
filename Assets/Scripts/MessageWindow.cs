@@ -8,8 +8,28 @@ public class MessageWindow : MonoBehaviour {
 
     public GameObject secretPoliticalMessage;
     public GameObject secretPoliticoReply;
+    public GameObject pillowMessage;
+    public GameObject pillowReply;
+    public GameObject wardrobeMessage;
+    public GameObject wardrobeReply;
+    public GameObject govMessage;
+    public GameObject govReply;
 
     public GameObject replyMessage;
+
+    string[] names =
+    {
+        "Kate",
+        "Snippy",
+        "Josh",
+        "Grant",
+        "Jake",
+        "Finn",
+        "Steven",
+        "Robert",
+        "Jenny",
+        "Tom",
+    };
 
     string[] pronouns =
     {
@@ -17,6 +37,9 @@ public class MessageWindow : MonoBehaviour {
         "You",
         "He",
         "She",
+        "We",
+        "It",
+        "They",
     };
 
     string[] verbs =
@@ -24,21 +47,49 @@ public class MessageWindow : MonoBehaviour {
         "wanted",
         "did",
         "saw",
+        "looked at",
+        "stopped",
+        "took pictures of"
     };
 
     string[] adjectives =
     {
-
+        "silly",
+        "huge",
+        "small",
+        "fat",
+        "sparkly",
     };
 
     string[] nouns =
     {
-
+        "cake",
+        "dance",
+        "booze",
+        "man",
+        "hair",
     };
 
     string[] adverbs =
     {
+        "really",
+        "quickly",
+        "slowly",
+        "hugely",
+        "stupidly",
+    };
 
+    string[] conjunctions =
+    {
+        "and",
+        "but",
+    };
+
+    char[] punctuations =
+    {
+        '.',
+        '?',
+        '!',
     };
 	// Use this for initialization
 	void Start () {
@@ -60,7 +111,7 @@ public class MessageWindow : MonoBehaviour {
     void OnTriggerEnter(Collider coll)
     {
         // If political message is brought here, take away and respond with new political message.
-        if(coll.gameObject == secretPoliticalMessage)
+        if (coll.gameObject == secretPoliticalMessage)
         {
             secretPoliticalMessage.transform.parent = transform;
             secretPoliticalMessage.GetComponent<Rigidbody>().isKinematic = true;
@@ -74,6 +125,28 @@ public class MessageWindow : MonoBehaviour {
             GetComponent<TextData>().data = "You have no new messages!";
             Debug.Log("Replied!");
         }
+        else if (coll.gameObject == wardrobeMessage)
+        {
+            CameraLook playCam = GameManager.Instance.player.transform.Find("Main Camera").GetComponent<CameraLook>();
+            playCam.currentlyHeld = playCam.emptyHold;
+            Destroy(coll.gameObject);
+            Invoke("generateWardrobeReply", 1.5f);
+        }
+        else if (coll.gameObject == pillowMessage)
+        {
+            CameraLook playCam = GameManager.Instance.player.transform.Find("Main Camera").GetComponent<CameraLook>();
+            playCam.currentlyHeld = playCam.emptyHold;
+            Destroy(coll.gameObject);
+            Invoke("generatePillowReply", 1.5f);
+        }
+        else if (coll.gameObject == govMessage)
+        {
+
+            CameraLook playCam = GameManager.Instance.player.transform.Find("Main Camera").GetComponent<CameraLook>();
+            playCam.currentlyHeld = playCam.emptyHold;
+            Destroy(coll.gameObject);
+            Invoke("generateGovReply", 1.5f);
+        }
         else if(coll.transform.GetComponent<TextData>() != null
             && coll.transform.GetComponent<TextData>().messType == TextData.messageType.message)
         {
@@ -85,16 +158,26 @@ public class MessageWindow : MonoBehaviour {
             coll.GetComponent<Rigidbody>().useGravity = false;
             playCam.currentlyHeld = playCam.emptyHold;
             Destroy(coll.gameObject);
-            generateGenericReply();
+            Invoke("generateGenericReply", 1.5f);
         }
     }
 
     string generateMessage()
     {
-        string newMessage = "";
+        string newMessage = names[Random.Range(0, names.Length)] + " says: \n\"";
         newMessage += pronouns[Random.Range(0, pronouns.Length)] + " ";
-        newMessage += verbs[Random.Range(0, pronouns.Length)] + " the";
-        newMessage += nouns[Random.Range(0, pronouns.Length)] + " ";
+        if (Random.value > 0.5f) { newMessage += adverbs[Random.Range(0, adverbs.Length)] + " "; }
+        newMessage += verbs[Random.Range(0, verbs.Length)] + " the ";
+        newMessage += nouns[Random.Range(0, nouns.Length)] + " ";
+        newMessage += conjunctions[Random.Range(0, conjunctions.Length)] + " ";
+        int nextPronounIdx = Random.Range(0, pronouns.Length);
+        string nextPro = pronouns[nextPronounIdx];
+        if(nextPro != pronouns[0]) {newMessage += nextPro.ToLower() + " "; }
+        else { newMessage += nextPro + " "; }
+        if (Random.value > 0.5f) { newMessage += adverbs[Random.Range(0, adverbs.Length)] + " "; }
+        newMessage += verbs[Random.Range(0, verbs.Length)] + " the ";
+        newMessage += nouns[Random.Range(0, nouns.Length)];
+        newMessage += punctuations[Random.Range(0, punctuations.Length)] + "\"";
         return newMessage;
     }
 
@@ -104,12 +187,29 @@ public class MessageWindow : MonoBehaviour {
         Instantiate(secretPoliticoReply, transform.position, Quaternion.identity);
     }
 
+    void generateWardrobeReply()
+    {
+        GetComponent<TextData>().data = "You have 1 new message!";
+        Instantiate(wardrobeReply, transform.position, Quaternion.identity);
+    }
+
+    void generatePillowReply()
+    {
+        GetComponent<TextData>().data = "You have 1 new message!";
+        Instantiate(pillowReply, transform.position, Quaternion.identity);
+    }
+
+    void generateGovReply()
+    {
+        GetComponent<TextData>().data = "You have 1 new message!";
+        Instantiate(govReply, transform.position, Quaternion.identity);
+    }
+
     void generateGenericReply()
     {
         GetComponent<TextData>().data = "You have 1 new message!";
         GameObject newReply = Instantiate(replyMessage);
-        newReply.transform.position = transform.position - transform.forward.normalized;
-        // Invoke("generateGovernmentReply", 1.5f);
+        newReply.transform.position = transform.Find("pigeon").position + transform.Find("pigeon").forward * 0.6f;
         GetComponent<TextData>().data = "You have no new messages!";
         newReply.GetComponent<TextData>().data = generateMessage();
     }
