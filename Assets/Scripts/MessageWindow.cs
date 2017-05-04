@@ -8,8 +8,28 @@ public class MessageWindow : MonoBehaviour {
 
     public GameObject secretPoliticalMessage;
     public GameObject secretPoliticoReply;
+    public GameObject pillowMessage;
+    public GameObject pillowReply;
+    public GameObject wardrobeMessage;
+    public GameObject wardrobeReply;
+    public GameObject govMessage;
+    public GameObject govReply;
 
     public GameObject replyMessage;
+
+    string[] names =
+    {
+        "Kate",
+        "Snippy",
+        "Josh",
+        "Grant",
+        "Jake",
+        "Finn",
+        "Steven",
+        "Robert",
+        "Jenny",
+        "Tom",
+    };
 
     string[] pronouns =
     {
@@ -122,7 +142,7 @@ public class MessageWindow : MonoBehaviour {
 
     string generateMessage()
     {
-        string newMessage = "";
+        string newMessage = names[Random.Range(0, names.Length)] + " says: \n\"";
         newMessage += pronouns[Random.Range(0, pronouns.Length)] + " ";
         if (Random.value > 0.5f) { newMessage += adverbs[Random.Range(0, adverbs.Length)] + " "; }
         newMessage += verbs[Random.Range(0, verbs.Length)] + " the ";
@@ -135,7 +155,7 @@ public class MessageWindow : MonoBehaviour {
         if (Random.value > 0.5f) { newMessage += adverbs[Random.Range(0, adverbs.Length)] + " "; }
         newMessage += verbs[Random.Range(0, verbs.Length)] + " the ";
         newMessage += nouns[Random.Range(0, nouns.Length)];
-        newMessage += punctuations[Random.Range(0, punctuations.Length)];
+        newMessage += punctuations[Random.Range(0, punctuations.Length)] + "\"";
         return newMessage;
     }
 
@@ -149,7 +169,7 @@ public class MessageWindow : MonoBehaviour {
     {
         GetComponent<TextData>().data = "You have 1 new message!";
         GameObject newReply = Instantiate(replyMessage);
-        newReply.transform.position = transform.position - transform.forward.normalized;
+        newReply.transform.position = transform.Find("pigeon").position + transform.Find("pigeon").forward * 0.6f;
         GetComponent<TextData>().data = "You have no new messages!";
         newReply.GetComponent<TextData>().data = generateMessage();
     }
