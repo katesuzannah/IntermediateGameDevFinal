@@ -48,6 +48,8 @@ public class endFont : MonoBehaviour {
 		}
 
 		if (Input.GetKeyDown(KeyCode.Space)) {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
 			SceneManager.LoadScene ("loginSnips");
 		}
 	}

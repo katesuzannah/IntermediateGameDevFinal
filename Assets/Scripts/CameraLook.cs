@@ -82,6 +82,14 @@ public class CameraLook : MonoBehaviour {
                         // open closet door
                         currentlyHeld.GetComponent<openCloset>().openClosetDoor();
                     }
+                    if(currentlyHeld.tag == "button")
+                    {
+                        if (!currentlyHeld.GetComponent<AudioSource>().isPlaying)
+                        {
+                            currentlyHeld.GetComponent<AudioSource>().clip = GameManager.Instance.compBeeps[Random.Range(0, 4)];
+                            currentlyHeld.GetComponent<AudioSource>().Play();
+                        }
+                    }
 				}
             }
 		} else {
