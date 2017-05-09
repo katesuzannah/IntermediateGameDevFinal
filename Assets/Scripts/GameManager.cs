@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour {
     public GameObject player;
     public Transform illuminatiMan;
 
+    public AudioClip[] compBeeps;
+
 	// Use this for initialization
 	void Start () {
         Instance = this;
