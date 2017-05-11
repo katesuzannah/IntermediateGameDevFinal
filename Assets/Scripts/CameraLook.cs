@@ -50,21 +50,21 @@ public class CameraLook : MonoBehaviour {
                 //pickup on click
                 if (Input.GetMouseButtonDown (0)) {
 					currentlyHeld = rayHit.collider; //remember what we hit
-					if (currentlyHeld.tag == "book")
-                    {
-                        //keep it in front of you
-                        currentlyHeld.transform.parent = Camera.main.transform;
+					if (currentlyHeld.tag == "book") {
+						//keep it in front of you
+						currentlyHeld.transform.parent = Camera.main.transform;
 						currentlyHeld.GetComponent<Rigidbody> ().useGravity = false;
 						whereAt = currentlyHeld.GetComponent<Transform> ().localPosition;
+					}
 
-					} else if (currentlyHeld.tag == "laptop") {
-						//clicks on laptop
-						laptopPopUpCanvas.SetActive (true);
-						Cursor.visible = true;
-						Cursor.lockState = CursorLockMode.None;
-						looking = false;
-
-					} else if (currentlyHeld.tag == "paper"){
+//					else if (currentlyHeld.tag == "laptop") {
+//						//clicks on laptop
+//						laptopPopUpCanvas.SetActive (true);
+//						Cursor.visible = true;
+//						Cursor.lockState = CursorLockMode.None;
+//						looking = false;
+//						}
+					else if (currentlyHeld.tag == "paper"){
 						creeperPaperCanvas.SetActive(true);
 						Cursor.visible = true;
 						Cursor.lockState = CursorLockMode.None;

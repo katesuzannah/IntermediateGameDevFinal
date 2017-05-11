@@ -1,0 +1,9 @@
+{
+"TOTAL_MEMORY": 268435456,
+"dataUrl": "homeroom1.data.unityweb",
+"asmCodeUrl": "homeroom1.asm.code.unityweb",
+"asmMemoryUrl": "homeroom1.asm.memory.unityweb",
+"asmFrameworkUrl": "homeroom1.asm.framework.unityweb",
+"splashScreenStyle": "Dark",
+"backgroundColor": "#222C36"
+}
