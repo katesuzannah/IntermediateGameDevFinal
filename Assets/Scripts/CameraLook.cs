@@ -127,11 +127,15 @@ public class CameraLook : MonoBehaviour {
                     string data = rayHit.collider.transform.GetComponent<TextData>().data;
                     GameManager.Instance.infoBox.transform.Find("Object Info").GetComponent<Text>().text = data;
                 }
+				if (rayHit.collider.tag == "laptop") {
+					laptopPopUpCanvas.SetActive (true);
+				}
             }
         }
         else
         {
             GameManager.Instance.infoBox.gameObject.SetActive(false);
+			laptopPopUpCanvas.SetActive (false);
         }
     }
 }
